@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maps - Location Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="search-container">
+                <i class="fas fa-map-marker-alt"></i>
+                <input type="text" id="searchInput" placeholder="जगह खोजें या पता दर्ज करें..." class="search-box">
+                <button id="searchBtn" class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-buttons">
+                <button id="myLocationBtn" title="मेरी स्थिति" class="btn-icon">
+                    <i class="fas fa-location-dot"></i>
+                </button>
+                <button id="toggleMapType" title="मानचित्र प्रकार" class="btn-icon">
+                    <i class="fas fa-layer-group"></i>
+                </button>
+                <button id="routeBtn" title="मार्ग खोजें" class="btn-icon">
+                    <i class="fas fa-road"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Container -->
+        <div class="main-container">
+            <!-- Sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-header">
+                    <h3>स्थान विवरण</h3>
+                    <button class="close-btn" id="closeSidebar"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="sidebar-content" id="sidebarContent">
+                    <p class="placeholder">किसी स्थान पर क्लिक करें विवरण देखने के लिए</p>
+                </div>
+            </div>
+
+            <!-- Map Container -->
+            <div class="map-container" id="mapContainer">
+                <canvas id="mapCanvas"></canvas>
+                <div class="zoom-controls">
+                    <button class="zoom-btn" id="zoomIn" title="बढ़ाएं">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="zoom-btn" id="zoomOut" title="घटाएं">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
+                <div class="map-info" id="mapInfo"></div>
+            </div>
+
+            <!-- Route Panel -->
+            <div class="route-panel" id="routePanel">
+                <div class="route-header">
+                    <h3>मार्ग विवरण</h3>
+                    <button class="close-btn" id="closeRoute"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="route-form">
+                    <input type="text" id="fromInput" placeholder="शुरुआत का स्थान" class="route-input">
+                    <button class="swap-btn" id="swapLocations" title="बदलें">
+                        <i class="fas fa-arrow-right-arrow-left"></i>
+                    </button>
+                    <input type="text" id="toInput" placeholder="गंतव्य स्थान" class="route-input">
+                    <button id="findRouteBtn" class="find-route-btn">मार्ग खोजें</button>
+                </div>
+                <div class="route-results" id="routeResults"></div>
+            </div>
+        </div>
+
+        <!-- Bottom Panel - Favorites & History -->
+        <div class="bottom-panel">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="favorites">
+                    <i class="fas fa-star"></i> पसंदीदा
+                </button>
+                <button class="tab-btn" data-tab="history">
+                    <i class="fas fa-history"></i> इतिहास
+                </button>
+                <button class="tab-btn" data-tab="settings">
+                    <i class="fas fa-cog"></i> सेटिंग्स
+                </button>
+            </div>
+            <div class="tab-content">
+                <div id="favorites" class="tab-pane active">
+                    <ul class="favorites-list" id="favoritesList"></ul>
+                </div>
+                <div id="history" class="tab-pane">
+                    <ul class="history-list" id="historyList"></ul>
+                </div>
+                <div id="settings" class="tab-pane">
+                    <div class="settings-group">
+                        <label>
+                            <input type="checkbox" id="darkMode"> डार्क मोड
+                        </label>
+                        <label>
+                            <input type="checkbox" id="trafficLayer"> ट्रैफिक परत
+                        </label>
+                        <label>
+                            <input type="checkbox" id="satelliteView"> सैटेलाइट दृश्य
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <script src="map.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
